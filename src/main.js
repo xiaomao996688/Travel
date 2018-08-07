@@ -6,8 +6,9 @@ import router from './router'
 // 手机300ms延时问题
 import fastClick from 'fastclick'
 //css样式初始化
-import './assets/styles/border.css'
-import './assets/styles/reset.css'
+import 'styles/border.css'
+import 'styles/reset.css'
+import 'styles/iconfont.css'
 
 Vue.config.productionTip = false
 
