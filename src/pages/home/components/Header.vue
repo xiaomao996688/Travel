@@ -12,9 +12,9 @@
 	</div>
 </template>
 <script >
-export default{
-	name :'HomeHeader'
-}
+	export default{
+		name :'HomeHeader'
+	}
 </script>
 <style lang="stylus" scoped>
 @import '~styles/varibles.styl'
