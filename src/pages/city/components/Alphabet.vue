@@ -1,9 +1,14 @@
 <template>
 		<ul class="list">
 			<li class="item" 
-			v-for="(item,key) of cities"
-			:key="key"
-			>{{key}}</li>
+			v-for="item of letters"
+			:key="item"
+			:ref="item"
+			@touchstart="handleTouchStart"
+			@touchmove="handleTouchMove"
+			@touchend="handleTouchEnd"
+			@click="handleLetterClick"
+			>{{item}}</li>
 		</ul>
 </template>
 <script >
@@ -12,6 +17,53 @@ export default{
 	name :'CityAlphabet',
 	props:{
 		cities: Object
+	},
+	//依赖的值发生变化开始执行this.cities，重新变化才会重新计算，否则被缓存
+	computed:{
+		letters () {
+			//cities键A
+			const letters = []
+			for( let i in this.cities){
+				letters.push(i)
+			}
+			return letters
+		}
+	},
+	data () {
+		return {
+			touchStatus: false,
+			startY: 0,
+			timer:null
+		}
+	},
+	undated(){
+		this.startY = this.$refs['A'][0].offsetTop
+	},
+	methods: {
+		handleLetterClick(e){
+			this.$emit('change', e.target.innerText)
+		},
+		handleTouchStart(){
+			this.touchStatus = true
+		},
+		handleTouchMove (e) {
+			if (this.touchStatus){
+				if(this.timer){
+					clearTimeout(this.timer)
+				}
+				this.timer = setTimeout(()=>{
+					//手指距离浏览窗口高度-79
+				const touchY  = e.touches[0].clientY - 79
+				//20字母高度
+				const index = Math.floor((touchY-this.startY)/20)
+				if(index >= 0 && index < this.letters.length)
+				this.$emit("change",this.letters[index])
+				}, 16)
+			}
+		},
+		handleTouchEnd () {
+			this.touchStatus = false
+		}
 	}
 	
 }
