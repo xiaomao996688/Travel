@@ -7,6 +7,8 @@ import router from './router'
 import fastClick from 'fastclick'
 //轮播图
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+// 公用数据
+import store from './store/index'
 import 'swiper/dist/css/swiper.css'
 //css样式初始化
 import 'styles/border.css'
@@ -21,6 +23,7 @@ fastClick.attach(document.body)
 new Vue({
   el: '#app',
   router,//router:router
+  store,
   components: { App },
   template: '<App/>'
 })
