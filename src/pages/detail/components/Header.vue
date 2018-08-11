@@ -3,17 +3,20 @@
 		<router-link tag="div" to="/" class="header-abs" v-show="this.showAbs">
 		   <span class="header-abs-back"><i class="iconfont">&#xe624;</i></span>
 		</router-link>
+
 		<div class="header-fixed"
 		v-show="!this.showAbs"
 		:style="opacityStyle"
 		>
+			<router-link tag="div" to="/">
+				<div class="header-back iconfont">&#xe624;</div>
+			</router-link>
 		景点详情
 		</div>
 	</div>
 </template>
 
 <script>
-
 export default {
 	name: 'DetailHeader',
 	data () {
@@ -27,7 +30,7 @@ export default {
 	methods :{
 		handleScroll () {
 			const top = document.documentElement.scrollTop
-			if(top >60  ){
+			if(top > 60  ){
 				let opacity = top/140
 				opacity = opacity > 1 ? 1 : opacity
 				this.opacityStyle = {opacity}
@@ -37,10 +40,10 @@ export default {
 			}
 		}
 	},
-	activated () {
+	mounted () {
 		window.addEventListener('scroll', this.handleScroll)
 	},
-	deactivated () {
+	unmounted () {
 		window.removeEventListener('scroll', this.handleScroll)
 	}
 }	
@@ -62,7 +65,7 @@ export default {
 		.header-abs-back
 			color: #fff
 	.header-fixed
-		z-index:2
+		z-index:5
 		position: fixed
 		top:0
 		height: $headerHeight
@@ -72,4 +75,13 @@ export default {
 		background:$bgColor
 		font-size: .32rem
 		width:100%
+		.header-back
+			text-align:left
+			position:absolute
+			top:0
+			left:0
+			width:.64rem
+			text-align:center
+			font-size:.4rem
+			color:#fff
 </style>
