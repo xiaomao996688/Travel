@@ -25,7 +25,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 -main.js配置-
 ##main.js是vue的入口文件,主要作用是初始化实例并使用需要的插件，App.vue是主组件，所有的页面都是在App.vue下进行切换的##
 -项目初始化介绍-
-##├── src
+```##├── src
 ├── main.js
 ├── App.vue
 ├── assets
@@ -63,5 +63,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 │   └── index.js # vuex配置
 │   └── mutaions # vuex配置文件
 │   └── state.js # vuex配置文件
-
+```
 ##
